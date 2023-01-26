@@ -1,2 +1,2 @@
 # weatherForcastAPI
-This shows us the weather forcast of next 10 days.
+This shows us the weather forcast of any city for next 10 days.
