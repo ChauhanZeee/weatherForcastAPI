@@ -15,26 +15,20 @@ import java.net.URISyntaxException;
 import java.util.Scanner;
 
 public class weatherForcastApp {
-    public static void main(String[] args)  {
+    public static void main(String[] args) throws URISyntaxException, IOException, noWeatherdataException {
 
-        try {
-            callWeatherForcastApi();
-        } catch (URISyntaxException e) {
-            throw new RuntimeException(e);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        callWeatherForcastApi();
     }
 
     //this method will call weather forcast api and show the data.
-    public static void callWeatherForcastApi() throws URISyntaxException, IOException {
+    public static void callWeatherForcastApi() throws URISyntaxException, IOException, noWeatherdataException {
         //taking input for location to be forcasted.
         System.out.println("enter the location");
 
         Scanner sc = new Scanner(System.in);
         String location = sc.nextLine();
 
-        URIBuilder builder = new URIBuilder("https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/weatherdata/forecast");
+        URIBuilder builder = new URIBuilder("https://weather.visualcrossing.com/VisualCrossingWebServices/services/weatherdata/forecast");
         builder.setParameter("aggregateHours", "24");
         builder.setParameter("contentType", "json");
         builder.setParameter("unitGroup", "metric");
@@ -71,8 +65,7 @@ public class weatherForcastApp {
                 System.out.println(dateTime+"\t "+minTemp+"\t \t "+maxTemp+"\t \t "+visibility+"\t \t \t "+humidity);
             }
         }else{
-            System.out.println("something went wrong");
+            throw new noWeatherdataException("something wrong.");
         }
-
     }
 }
