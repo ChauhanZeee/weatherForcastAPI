@@ -1,0 +1,2 @@
+libraries used --> apache http client.
+libraries used for formatting the jason --> java json
